@@ -1,0 +1,23 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <h1 class="text-center mb-5">
+        <span>List</span> Events <i class="fa fa-heart text-danger"></i>
+      </h1>
+
+      <!-- Search -->
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="Search by Title or location"
+        [(ngModel)]="searchTerm"
+      />
+
+      <!-- Cards -->
+      <div class="col-md-4 mt-4" *ngFor="let e of filteredEvents() | orderByLikes"> <!--slice:0:2=>display only 2 events of filteredEvents-->
+        <app-card-event [e]="e" ></app-card-event> <!--[e] hya input events elly sna3tha fy card-event w b3aththa l les parents best w favoris-->
+
+      </div>
+    </div>
+  </div>
+</section>

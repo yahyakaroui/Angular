@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Ajouter un nouvel événement</h2>
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="col-md-6 mx-auto">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+      <div class="text-danger" *ngIf="eventForm.get('title')?.touched && eventForm.get('title')?.invalid">
+        <small *ngIf="eventForm.get('title')?.errors?.['required']">Le titre est requis</small>
+        <small *ngIf="eventForm.get('title')?.errors?.['minlength']">Le titre doit contenir au moins 5 caractères</small>
+        <small *ngIf="eventForm.get('title')?.errors?.['pattern']">Le titre doit contenir des lettres</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+      <div class="text-danger" *ngIf="eventForm.get('description')?.touched && eventForm.get('description')?.invalid">
+        <small *ngIf="eventForm.get('description')?.errors?.['required']">La description est requise</small>
+        <small *ngIf="eventForm.get('description')?.errors?.['minlength']">La description oit contenir au moins 30 caractères</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="imageUrl" class="form-label">URL de l'image</label>
+      <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Prix</label>
+      <input type="number" class="form-control" id="price" formControlName="price">
+      <div class="text-danger" *ngIf="eventForm.get('price')?.touched && eventForm.get('price')?.invalid">
+        <small *ngIf="eventForm.get('price')?.errors?.['required']">Le prix est requis</small>
+        <small *ngIf="eventForm.get('price')?.errors?.['pattern']">Le prix  n’accepte que des chiffres et des points</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nbPlaces" class="form-label">Nombre de places</label>
+      <input type="number" class="form-control" id="nbPlaces" formControlName="nbPlaces">
+      <div class="text-danger" *ngIf="eventForm.get('nbPlaces')?.touched && eventForm.get('nbPlaces')?.invalid">
+        <small *ngIf="eventForm.get('nbPlaces')?.errors?.['required']">Le nombre de places est requis</small>
+        <small *ngIf="eventForm.get('nbPlaces')?.errors?.['pattern']">Le nombre de places accepte un nombre inférieur ou égal à 100</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="date" formControlName="date">
+      <div class="text-danger" *ngIf="eventForm.get('date')?.touched && eventForm.get('date')?.invalid">
+        <small *ngIf="eventForm.get('date')?.errors?.['required']">La date est requise</small>
+        <small *ngIf="eventForm.get('date')?.errors?.['futureDateInvalid']">
+      {{eventForm.get('date')?.errors?.['futureDateInvalid']}}
+    </small>
+      </div>
+      </div>
+
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Lieu</label>
+      <input type="text" class="form-control" id="location" formControlName="location">
+      <div class="text-danger" *ngIf="eventForm.get('location')?.touched && eventForm.get('location')?.invalid">
+        <small *ngIf="eventForm.get('location')?.errors?.['required']">Le lieu est requis</small>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid">Ajouter l'évènement</button>
+    </div>
+  </form>
+</div>

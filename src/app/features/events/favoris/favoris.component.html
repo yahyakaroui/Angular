@@ -1,0 +1,23 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <h1 class="text-center mb-5">
+        <span>List</span> Events <i class="fa fa-heart text-danger"></i>
+      </h1>
+
+      <!-- Search -->
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="Search by Title or location"
+        [(ngModel)]="searchTerm"
+      />
+
+      <!-- Cards -->
+      <div class="col-md-4 mt-4" *ngFor="let e of filteredEvents()">
+        <app-card-event [e]="e" (notificationLike)="handleLike($event)" [showLike]="false"></app-card-event>
+
+      </div>
+    </div>
+  </div>
+</section>
