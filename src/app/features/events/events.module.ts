@@ -9,9 +9,11 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { FavorisComponent } from './favoris/favoris.component';
 import { CardEventComponent } from './card-event/card-event.component';
 import { BestEventComponent } from './best-event/best-event.component';
+import { ChangeBackgroundDirectiveDirective } from '../../shared/Directives/change-background-directive.directive';
 import { AddEventComponent } from './components/add-event/add-event.component';
+import { ParticipationFormComponent } from './components/participation-form/participation-form.component';
+import { SharedModule } from '../../shared/shared.module';
 
-import { SharedModule } from '../../shared/shared.module';  // <-- IMPORTANT
 
 @NgModule({
   declarations: [
@@ -21,14 +23,17 @@ import { SharedModule } from '../../shared/shared.module';  // <-- IMPORTANT
     FavorisComponent,
     CardEventComponent,
     BestEventComponent,
-    AddEventComponent
+    ChangeBackgroundDirectiveDirective,
+    AddEventComponent,
+    ParticipationFormComponent
   ],
   imports: [
     CommonModule,
     EventsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule    // <-- POUR UTILISER PIPE + DIRECTIVE
+    SharedModule
+
   ]
 })
 export class EventsModule { }

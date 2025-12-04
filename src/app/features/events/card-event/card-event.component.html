@@ -1,20 +1,38 @@
-<div class="card profile-card-5 shadow" appChangeBackgroundDirective>
-          <div  class="card-img-block" >
-            <img class="card-img-top" [src]="e.imageUrl" alt="Card image cap" style="max-height: 300px;">
-          </div>
-          <div class="card-body pt-0">
-            <h5 [ngStyle]="{'color':e.nbrLike>2 ? 'red':'green'}" class="card-title">{{ e.title }}</h5>
-            <h6 class="text-muted"><i class="fa fa-calendar text-primary"></i>{{ e.date |date}} | <i class="fa fa-location text-danger"></i> {{ e.location }}</h6>
-            <p [ngClass]="{'text-danger':e.nbPlaces===0,'text-success':e.nbPlaces>0}" class="fw-bold">💰 {{ e.price }} | 🎟 {{ e.nbPlaces }} places</p>
-            <p>
-              <button *ngIf="showLike" class="btn btn-sm btn-outline-danger"
-                      (click)="sendDataToParent(e)"
-                      [disabled]="isExpired(e)">❤️</button>
-              {{ e.nbrLike }}
-            </p>
-            <p class="card-text">{{ e.description }}</p>
-            <a [routerLink]="['/events/event-details',e.id]" class="btn btn-primary btn-sm">Read More</a>
-          </div>
-        </div>
+<article class="event-card shadow-sm" appChangeBackgroundDirective>
+  <div class="event-image">
+    <img [src]="e.imageUrl" alt="{{ e.title }}" />
+    <div class="pill price">💰 {{ e.price | currency:'TND':'symbol-narrow' }}</div>
+    <div class="pill seats" [class.sold-out]="e.nbPlaces===0">
+      🎟 {{ e.nbPlaces === 0 ? 'Complet' : e.nbPlaces + ' places' }}
+    </div>
+  </div>
 
+  <div class="event-body">
+    <div class="event-header">
+      <h5 [ngStyle]="{'color': e.nbrLike > 2 ? '#ff6b35' : '#0f172a'}">{{ e.title }}</h5>
+      <div class="likes">
+        <button *ngIf="showLike"
+                class="btn btn-sm btn-outline-danger"
+                (click)="sendDataToParent(e)"
+                [disabled]="isExpired(e)">
+          ❤️
+        </button>
+        <span class="count">{{ e.nbrLike }}</span>
+      </div>
+    </div>
 
+    <div class="event-meta">
+      <span><i class="fa-regular fa-calendar"></i> {{ e.date | date }}</span>
+      <span><i class="fa-solid fa-location-dot"></i> {{ e.location }}</span>
+    </div>
+
+    <p class="event-description">{{ e.description }}</p>
+
+    <div class="event-actions">
+      <a [routerLink]="['/events/event-details', e.id]" class="btn btn-outline-primary btn-sm">Détails</a>
+      <button [routerLink]="['/events/participate', e.id, e.price]" class="btn btn-success btn-sm">Participer</button>
+      <button class="btn btn-danger btn-sm" (click)="deleteEvent(e)">Supprimer</button>
+      <button class="btn btn-warning btn-sm" [routerLink]="['/events/add-event', e.id]">Modifier</button>
+    </div>
+  </div>
+</article>

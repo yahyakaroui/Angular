@@ -1,0 +1,9 @@
+section {
+  padding: 40px 0 56px;
+  background: linear-gradient(135deg, #eef2ff 0%, #fdf7f2 100%);
+}
+
+h1 {
+  font-weight: 700;
+  color: #0f172a;
+}

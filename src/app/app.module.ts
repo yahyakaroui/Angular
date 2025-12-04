@@ -10,15 +10,21 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ProductComponent } from './layout/product/product.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import { ListEventComponent } from './features/events/list-event/list-event.component';
+import { TestDirective } from './shared/Directives/test.directive';
+import { ChangeBackgroundDirectiveDirective } from './shared/Directives/change-background-directive.directive';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent, 
+    NavbarComponent,
     HomeComponent,
     FooterComponent,
     ProductComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestDirective
+
+
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,8 @@ import { ListEventComponent } from './features/events/list-event/list-event.comp
     FormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

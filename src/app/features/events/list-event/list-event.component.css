@@ -1,0 +1,26 @@
+section {
+  padding: 48px 0 64px;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.08), transparent 30%),
+              radial-gradient(circle at 80% 0%, rgba(16, 185, 129, 0.08), transparent 28%),
+              #f6f8fb;
+}
+
+h1 {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+h1 span {
+  display: block;
+  font-size: 36px;
+}
+
+.form-control {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 12px 14px;
+}
+
+.btn-primary {
+  border-radius: 12px;
+}

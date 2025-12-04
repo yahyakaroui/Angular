@@ -1,0 +1,4 @@
+/* Styles for form-product (feature) */
+.alert { margin-top: .5rem; }
+label { display:block; margin-top: .75rem; }
+input, textarea { width: 100%; }

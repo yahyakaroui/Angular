@@ -10,8 +10,8 @@ import { EventsService } from '../../../shared/service/events.service';
 })
 export class EventDetailsComponent {
 
-id:number;
-event:Events | undefined;
+id!:number;
+event?:Events; ;
 
 
   //injection de ActivatedRoute pour récupérer l'id de l'url
@@ -20,7 +20,18 @@ event:Events | undefined;
 ngOnInit(): void {
     //récupérer l'id de l'event à partir de l'url
   this.id= this.act.snapshot.params['id'];
-  this.event=this.eventS.listEvents.find(e=>e.id==this.id);
+ this.eventS.getEventById(this.id).subscribe({
+      next: (data: Events | null) => {
+        this.event = data || undefined;
+
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération de l\'événement', err);
+        this.event = undefined;
+      },
+      complete: () => console.log('Récupération de l\'événement terminée')
+    });
+  //this.event=this.eventS.getAllEvents.find(e=>e.id==this.id);
   console.log(this.event);
 
 }

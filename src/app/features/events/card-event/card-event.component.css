@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
+
+.event-card {
+  border: 1px solid #eef1f7;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+}
+
+.event-image {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pill {
+  position: absolute;
+  top: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+}
+
+.pill.price {
+  left: 12px;
+  background: #0f172a;
+}
+
+.pill.seats {
+  right: 12px;
+  background: #10b981;
+}
+
+.pill.seats.sold-out {
+  background: #ef4444;
+}
+
+.event-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-header h5 {
+  margin: 0;
+  font-weight: 700;
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.likes {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.likes .count {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.event-meta i {
+  margin-right: 6px;
+  color: #ff6b35;
+}
+
+.event-description {
+  color: #4b5563;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

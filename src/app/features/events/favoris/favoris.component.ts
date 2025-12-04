@@ -11,10 +11,22 @@ export class FavorisComponent implements OnInit {
 
   constructor(private events:EventsService) { }
   ListEventsWithLike:Events[]=[];
+  eventt:Events[]=[];
   searchTerm: string = '';
 
   ngOnInit(): void {
-       this.ListEventsWithLike= this.events.listEvents.filter(e=>e.nbrLike>0);
+    //récuperer la liste des events
+      this.events.getAllEvents().subscribe({
+      next: (data: Events[] | null) => {
+        this.ListEventsWithLike = (data || []).filter(e=>e.nbrLike>0);
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des events', err);
+        this.eventt = [];
+      },
+      complete: () => console.log('Récupération des events terminée')
+    });
+       //this.ListEventsWithLike= this.eventt.filter(e=>e.nbrLike>0);
   }
     handleLike(e:Events){
      e.nbrLike++;

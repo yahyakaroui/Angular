@@ -13,12 +13,17 @@ searchTerm: string = '';
 constructor(private eventS:EventsService) { }
 
 ngOnInit(): void {
-  this.events=this.eventS.listEvents
-
-
-
-}
-
+    this.eventS.getAllEvents().subscribe({
+      next: (data: Events[] | null) => {
+        this.events = data || [];
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des events', err);
+        this.events = [];
+      },
+      complete: () => console.log('Récupération des events terminée')
+    });
+  }
  //increase like when click on the button like
    handleLike(e:Events){
   e.nbrLike++;

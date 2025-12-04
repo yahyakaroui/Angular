@@ -14,7 +14,16 @@ export class BestEventComponent implements OnInit {
 
   ngOnInit(): void {
        //this.bestEvent= this.events.listEvents.filter(e=>e.nbPlaces>=15);
-       this.bestEvent= this.events.listEvents;
+        this.events.getAllEvents().subscribe({
+        next: (data: Events[] | null) => {
+          this.bestEvent = (data || []).filter(e => e.nbPlaces >= 15);
+        },
+        error: (err) => {
+          console.error('Erreur lors de la récupération des events', err);
+          this.bestEvent = [];
+        },
+        complete: () => console.log('Récupération des events terminée')
+      });
   }
   //recevoir la notification de like de card event
     handleLike(e:Events){
